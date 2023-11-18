@@ -2,7 +2,7 @@ body {
     background-color: #ffffff;
 }
 
-.text-voice{
+.text-voice {
     margin-left: 50px;
     font-size: 18px;
     color: #A8A2A2;
@@ -106,3 +106,26 @@ body {
     margin-top: 10px;
     text-align: center;
 }
+
+.checkbutton {
+    width: 200px;
+    /* Adjust the width as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* Optional: Centers the dialog horizontally on the page */
+}
+
+.button-anotherreport,
+.button-backhome {
+  height: 30px;
+  width: 400px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  margin-bottom: 100px; /* Adjust the margin to your preference */
+}
+
+

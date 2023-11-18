@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./ReportIssue.css";
-import { Button } from '@mui/material';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Header from './Header';
 
 export default function ReportIssue() {
@@ -9,6 +9,7 @@ export default function ReportIssue() {
     const [location, setLocation] = useState('');
     const [incidentDetails, setIncidentDetails] = useState('');
     const [incidentType, setIncidentType] = useState('');
+    const [isDialogOpen, setDialogOpen] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,6 +25,9 @@ export default function ReportIssue() {
             incidentType,
         });
 
+        // Open the dialog
+        setDialogOpen(true);
+
         // You can reset the form fields here if needed.
         // setDate('');
         // setTime('');
@@ -32,6 +36,22 @@ export default function ReportIssue() {
         // setIncidentType('');
     };
 
+    const handleDialogClose = () => {
+        // Close the dialog
+        setDialogOpen(false);
+    };
+
+    const handleSubmitAnotherReport = () => {
+        // Reset the form fields
+        setDate('');
+        setTime('');
+        setLocation('');
+        setIncidentDetails('');
+        setIncidentType('');
+
+        // Close the dialog
+        setDialogOpen(false);
+    };
     return (
         <div>
             <Header />
@@ -127,12 +147,44 @@ export default function ReportIssue() {
                             />
                             <br />
                             <div className='button-submit'>
-                                <Button variant="contained" style={{ color: '#FFFFFF', fontWeight: "bolder", backgroundColor: "#213555", width: '400px', height: '20px', padding: '15px 30px', borderRadius: '10px', textAlign: 'center' }}>Submit</Button>
+                                <Button
+                                    variant="contained"
+                                    style={{ color: '#FFFFFF', fontWeight: "bolder", backgroundColor: "#213555", width: '400px', height: '20px', padding: '15px 30px', borderRadius: '10px', textAlign: 'center' }}
+                                    onClick={handleSubmit}
+                                >
+                                    Submit
+                                </Button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            {/* Dialog for submission confirmation */}
+            <Dialog open={isDialogOpen} onClose={handleDialogClose} PaperProps={{ style: { backgroundColor: '#E0E0E0' } }}>
+                <img src={"checkbutton.png"} alt="Check Button" className="checkbutton" />
+                <DialogTitle style={{ margin: 'auto', textAlign: 'center', color: '#213555', fontWeight: 'bold', fontSize: '30px' }}>
+                    Your Emergency Report has been submitted!
+                </DialogTitle>
+                <DialogActions>
+                    <Button
+                        style={{ backgroundColor: "#213555", marginBottom: "10px"}}
+                        className="button-anotherreport"
+                        onClick={handleSubmitAnotherReport}
+                        variant="contained"
+                    >
+                        Another Report
+                    </Button>
+
+                    <Button
+                        style={{ backgroundColor: "#213555", marginBottom: "10px"}}
+                        className="button-backhome"
+                        onClick={handleDialogClose}
+                        variant="contained"
+                    >
+                        Back Home
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
