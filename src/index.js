@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import Header from './Header';
-import EmergencyAlertChoices from './EmergencyAlertChoices';
+import Header from './Header';
+import EmergencyAlert from './EmergencyAlert';
+import EmergencyAlertList from './EmergencyAlertList';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <EmergencyAlertChoices />
+    <EmergencyAlert />
   </React.StrictMode>
 );
 
